@@ -15,7 +15,7 @@ export function LoginForm() {
   const [email, setEmail] = useState('')
   const supabase = createClient()
 
-  async function handleGoogleLogin() {
+  async function signInWithGoogle() {
     setLoadingGoogle(true)
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -92,7 +92,7 @@ export function LoginForm() {
         <Button 
           className="w-full font-medium cursor-pointer" 
           variant="outline" 
-          onClick={handleGoogleLogin}
+          onClick={signInWithGoogle}
           disabled={loadingGoogle || loadingEmail}
         >
           {loadingGoogle ? 'Connecting...' : 'Continue with Google'}
