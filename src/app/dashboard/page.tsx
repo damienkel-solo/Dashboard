@@ -19,8 +19,9 @@ export default async function DashboardPage() {
     .from('leads')
     .select(`
       *,
-      projects:project_id (title)
+      projects!inner (title, creator_id)
     `)
+    .eq('projects.creator_id', session!.user.id)
     .order('created_at', { ascending: false })
 
   return (
